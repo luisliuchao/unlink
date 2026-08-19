@@ -25,7 +25,10 @@ export function Layout({ path, navigate, children }: LayoutProps): JSX.Element {
             className="flex items-center gap-2 font-semibold text-lg tracking-tight"
           >
             <Link2 className="h-5 w-5 text-emerald-600" />
-            Unlink SG
+            Unlink
+            <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-800">
+              SG
+            </span>
           </button>
           <nav className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
             {navItems.map((item) => {
