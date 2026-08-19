@@ -170,7 +170,7 @@ export const moveChecklist: Checklist = {
           title: 'SingPost mail redirection for 3–6 months',
           detail:
             'Every redirected letter identifies an organisation you forgot. Update it, then wait for the redirect to go quiet.',
-          links: [{ label: 'SingPost redirection', url: 'https://www.singpost.com/send-receive/redirect-mail' }]
+          links: [{ label: 'SingPost redirection', url: 'https://www.singpost.com/receiving/mail-redirection-service' }]
         },
         moveNewOccupantStep
       ]

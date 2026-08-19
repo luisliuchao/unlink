@@ -35,7 +35,7 @@ export const senders: Sender[] = [
     category: 'bank',
     how: 'UOB TMRW app chat or hotline 1800 222 2121.',
     channelLabel: 'UOB contact page',
-    channelUrl: 'https://www.uob.com.sg/personal/help-and-support/index.page',
+    channelUrl: 'https://www.uob.com.sg/personal/customer-service/index.page',
     template: numberTemplate('UOB')
   },
   {
@@ -44,7 +44,7 @@ export const senders: Sender[] = [
     category: 'government',
     how: 'Do not tap links in the SMS. Contact the agency through its official website. For Singpass-related SMS, use the Singpass helpdesk (+65 6335 3533).',
     channelLabel: 'Singpass contact',
-    channelUrl: 'https://www.singpass.gov.sg/main/html/contactus.html',
+    channelUrl: 'https://www.singpass.gov.sg/main/contact/',
     template: numberTemplate('the agency')
   },
   {
