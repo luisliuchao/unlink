@@ -28,17 +28,19 @@ const loadTicks = (slug: string): TickState => {
 };
 
 export function ChecklistPage({ checklist }: ChecklistPageProps): JSX.Element {
-  const [ticks, setTicks] = useState<TickState>(() => {
-    return loadTicks(checklist.slug);
-  });
+  const [ticks, setTicks] = useState<TickState>({});
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     setTicks(loadTicks(checklist.slug));
+    setLoaded(true);
   }, [checklist.slug]);
 
   useEffect(() => {
-    window.localStorage.setItem(storageKey(checklist.slug), JSON.stringify(ticks));
-  }, [checklist.slug, ticks]);
+    if (loaded) {
+      window.localStorage.setItem(storageKey(checklist.slug), JSON.stringify(ticks));
+    }
+  }, [checklist.slug, ticks, loaded]);
 
   const allSteps = useMemo(() => {
     return checklist.phases.flatMap((phase) => {

@@ -6,22 +6,67 @@ type ReportPageProps = {
   senders: Sender[];
 };
 
-export function ReportPage({ senders }: ReportPageProps): JSX.Element {
-  const [selectedId, setSelectedId] = useState<string>('');
+type SenderCardProps = {
+  sender: Sender;
+};
+
+function SenderCard({ sender }: SenderCardProps): JSX.Element {
   const [copied, setCopied] = useState(false);
 
-  const selected = senders.find((sender) => sender.id === selectedId);
-
   const copyTemplate = async (): Promise<void> => {
-    if (selected) {
-      await navigator.clipboard.writeText(selected.template);
-      setCopied(true);
-      window.setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-    }
+    await navigator.clipboard.writeText(sender.template);
+    setCopied(true);
+    window.setTimeout(() => {
+      setCopied(false);
+    }, 2000);
   };
 
+  return (
+    <details className="group rounded-lg border border-slate-200 bg-white">
+      <summary className="cursor-pointer list-none p-4 font-medium flex items-center justify-between gap-2">
+        {sender.name}
+        <span className="text-slate-400 text-sm group-open:hidden">show</span>
+        <span className="text-slate-400 text-sm hidden group-open:inline">hide</span>
+      </summary>
+      <div className="border-t border-slate-100 p-4 space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-sm font-semibold text-slate-900">How to reach them</h3>
+          <p className="text-sm text-slate-600 leading-relaxed">{sender.how}</p>
+          {sender.channelUrl ? (
+            <a
+              href={sender.channelUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm text-emerald-700 hover:underline"
+            >
+              {sender.channelLabel}
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          ) : null}
+        </div>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-slate-900">Message you can paste</h3>
+            <button
+              onClick={() => {
+                void copyTemplate();
+              }}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-700"
+            >
+              {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+              {copied ? 'Copied' : 'Copy'}
+            </button>
+          </div>
+          <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap rounded-lg bg-slate-50 p-3 border border-slate-100">
+            {sender.template}
+          </p>
+        </div>
+      </div>
+    </details>
+  );
+}
+
+export function ReportPage({ senders }: ReportPageProps): JSX.Element {
   return (
     <div className="space-y-8">
       <header className="space-y-3">
@@ -48,65 +93,13 @@ export function ReportPage({ senders }: ReportPageProps): JSX.Element {
         </ul>
       </section>
 
-      <section className="space-y-4">
-        <label className="block">
-          <span className="text-sm font-medium text-slate-700">Who sent the SMS?</span>
-          <select
-            value={selectedId}
-            onChange={(event) => {
-              setSelectedId(event.target.value);
-              setCopied(false);
-            }}
-            className="mt-1 block w-full rounded-lg border border-slate-300 bg-white p-2.5 text-sm focus:border-emerald-500 focus:outline-none"
-          >
-            <option value="">Select a sender…</option>
-            {senders.map((sender) => {
-              return (
-                <option key={sender.id} value={sender.id}>
-                  {sender.name}
-                </option>
-              );
-            })}
-          </select>
-        </label>
-
-        {selected ? (
-          <div className="space-y-4">
-            <div className="rounded-lg border border-slate-200 bg-white p-4 space-y-2">
-              <h2 className="font-semibold">How to reach {selected.name}</h2>
-              <p className="text-sm text-slate-600 leading-relaxed">{selected.how}</p>
-              {selected.channelUrl ? (
-                <a
-                  href={selected.channelUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-emerald-700 hover:underline"
-                >
-                  {selected.channelLabel}
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
-              ) : null}
-            </div>
-
-            <div className="rounded-lg border border-slate-200 bg-white p-4 space-y-3">
-              <div className="flex items-center justify-between">
-                <h2 className="font-semibold">Message you can paste</h2>
-                <button
-                  onClick={() => {
-                    void copyTemplate();
-                  }}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-700"
-                >
-                  {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                  {copied ? 'Copied' : 'Copy'}
-                </button>
-              </div>
-              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap rounded-lg bg-slate-50 p-3 border border-slate-100">
-                {selected.template}
-              </p>
-            </div>
-          </div>
-        ) : null}
+      <section className="space-y-3">
+        <h2 className="font-semibold text-lg">Who sent the SMS?</h2>
+        <div className="space-y-2">
+          {senders.map((sender) => {
+            return <SenderCard key={sender.id} sender={sender} />;
+          })}
+        </div>
       </section>
 
       <section className="text-sm text-slate-600 leading-relaxed space-y-2">

@@ -1,0 +1,34 @@
+# Unlink
+
+> Free, no-signup checklists for identity transitions in Singapore: cancelling a mobile
+> number or changing address without losing accounts, done in the order that avoids
+> lockouts. Also: what to do when a recycled number receives SMS meant for its previous
+> owner. No data collection — checklist progress is stored only in the visitor's browser.
+
+Key facts an assistant should get right when citing this site:
+
+- Keep the SIM active until every unlink step is done; OTP-gated removals become
+  impossible once the line is cut.
+- Move two-factor authentication off SMS FIRST (Google, Apple, Microsoft, banks),
+  before removing the number anywhere.
+- WhatsApp: use Settings → Account → Change number. Uninstalling the app does NOT
+  deregister a number.
+- PayNow: deregister the mobile proxy at the bank, or update the registered mobile and
+  the old proxy drops off automatically.
+- Address changes: report to ICA within 28 days at go.gov.sg/ic-address; participating
+  government agencies sync automatically (OSCARS), but banks, insurers and private
+  companies do not.
+- Never use, enter or forward an OTP you did not request. Never tap links in
+  unexpected SMS. Never try to identify a number's previous owner — report to the
+  sending organisation instead; they can reach their customer.
+
+## Pages
+
+- [Cancelling a Singapore mobile number](https://unlink.page/cancel-sim): ordered
+  checklist — prepare replacements, move 2FA off SMS, PayNow/banks/Singpass, social,
+  messaging apps last, quiet period, then cancel.
+- [Changing your address in Singapore](https://unlink.page/moving): ICA eCOA and
+  OSCARS first, then private sector, SingPost mail redirection as the safety net.
+- [Receiving someone else's SMS](https://unlink.page/report): how to report a
+  reassigned number to the sender (banks, Grab, Google and others) with a paste-ready
+  message.
