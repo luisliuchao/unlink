@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Link2 } from 'lucide-react';
+import { ShareBar } from './ShareBar';
 
 type LayoutProps = {
   path: string;
@@ -52,7 +53,10 @@ export function Layout({ path, navigate, children }: LayoutProps): JSX.Element {
           </nav>
         </div>
       </header>
-      <main className="flex-1 mx-auto w-full max-w-3xl px-4 py-8">{children}</main>
+      <main className="flex-1 mx-auto w-full max-w-3xl px-4 py-8">
+        {children}
+        <ShareBar path={path} />
+      </main>
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-3xl px-4 py-6 text-xs text-slate-500 space-y-1">
           <p>
