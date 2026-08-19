@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AlertTriangle, ExternalLink, RotateCcw } from 'lucide-react';
-import { Checklist } from '../data/checklists';
+import { Checklist } from '../data/types';
 
 type ChecklistPageProps = {
   checklist: Checklist;

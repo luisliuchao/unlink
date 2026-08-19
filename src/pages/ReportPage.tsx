@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Check, Copy, ExternalLink, ShieldAlert } from 'lucide-react';
-import { senders } from '../data/senders';
+import { Sender } from '../data/types';
 
-export function ReportPage(): JSX.Element {
+type ReportPageProps = {
+  senders: Sender[];
+};
+
+export function ReportPage({ senders }: ReportPageProps): JSX.Element {
   const [selectedId, setSelectedId] = useState<string>('');
   const [copied, setCopied] = useState(false);
 

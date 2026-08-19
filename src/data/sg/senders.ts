@@ -1,12 +1,4 @@
-export type Sender = {
-  id: string;
-  name: string;
-  category: 'bank' | 'government' | 'platform' | 'messaging' | 'other';
-  how: string;
-  channelLabel: string;
-  channelUrl?: string;
-  template: string;
-};
+import { Sender } from '../types';
 
 const numberTemplate = (service: string): string => {
   return (
