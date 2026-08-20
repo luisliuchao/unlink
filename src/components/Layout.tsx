@@ -67,6 +67,18 @@ export function Layout({ path, navigate, children }: LayoutProps): JSX.Element {
             Not affiliated with any government agency, telco or bank. Always use official apps and
             websites — never links inside unexpected SMS.
           </p>
+          <p>
+            Spotted something wrong or outdated?{' '}
+            <a
+              href="https://github.com/luisliuchao/unlink/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 hover:underline"
+            >
+              Suggest an improvement on GitHub
+            </a>
+            .
+          </p>
         </div>
       </footer>
     </div>
