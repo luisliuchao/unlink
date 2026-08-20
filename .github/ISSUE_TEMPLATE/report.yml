@@ -1,0 +1,29 @@
+name: Report a problem
+description: A broken link, outdated step, wrong hotline, or anything else that needs fixing.
+labels: [report]
+body:
+  - type: dropdown
+    id: page
+    attributes:
+      label: Which page?
+      options:
+        - Cancelling a SIM (/cancel-sim)
+        - Moving house (/moving)
+        - Someone else's SMS (/report)
+        - Landing page (/)
+        - Other / site-wide
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What's wrong?
+      description: Which step or link, and what should it say or point to instead (if you know)?
+      placeholder: The UOB link on the report page shows "page not found". The current page seems to be…
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source (optional)
+      description: A link to the official page that confirms the correct information.
